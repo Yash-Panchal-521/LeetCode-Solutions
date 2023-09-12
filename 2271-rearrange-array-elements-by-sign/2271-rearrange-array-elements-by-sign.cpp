@@ -3,28 +3,28 @@ public:
     vector<int> rearrangeArray(vector<int>& nums) {
 
         int n = nums.size();
+        //creating new ans array
+        vector<int> ans(n);
 
-        vector<int> pos; //for keeping all positive number in given array
-        vector<int> neg; //for keeping all negative number in given array
+        //here pos will indicate index for positive element, viceversa for neg
+        int pos = 0, neg=1;
 
         for(int i=0; i<n; i++)
         {
-            if(nums[i]>0)
-                pos.push_back(nums[i]);
+            if(nums[i]<0)
+            {
+                ans[neg] = nums[i];
+                neg+=2;
+            }
             else
-                neg.push_back(nums[i]);
+            {
+                ans[pos] = nums[i];
+                pos+=2;
+            }
         }
 
-        // creating new ans array
-        vector<int>ans;
-        //pushing each elel=ment one by one in pair from pos and neg
-
-        for(int i=0; i<pos.size(); i++)
-        {
-            ans.push_back(pos[i]);
-            ans.push_back(neg[i]);
-        }
         return ans;
+        
         
     }
 };
